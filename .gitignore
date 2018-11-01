@@ -33,6 +33,8 @@ Thumbs.db
 bower_components
 dist
 build
+draft.html
+
 
 # Node.JS
 node_modules

@@ -1,3 +1,5 @@
+$(function() {
+
 // Create array from 1000 to 10000 value
 var randSum = [1000, 1500, 2000, 2500, 3000, 3250, 3500, 3750, 4000, 4350, 4500, 4800, 5000, 5200, 5500, 5700, 6000, 6300, 6500, 6900, 7000, 7500, 7200, 8000, 8500, 8700, 9000, 9300, 9500, 10000];
 
@@ -864,10 +866,96 @@ var people = [{
 
 }, {
 
-    "fname": "Борисов Митрофан",
+    "fname": "Борисов Евгений",
 
     "avatar": "img/man-icon.png",
 
     "sex": 1
 
 }];
+
+function showTips() {
+
+
+
+    this.showItem = 0;
+
+    this.generateHTML = function (fname, avatar) {
+
+
+
+
+        return (
+
+
+
+            '<div class="popnotice-item">' +
+
+            '<img src="' + avatar + '" alt="" class="popnotice-img">' +
+
+            '<div class="popnotice-description">' +
+
+            '<div class="popnotice-text">' + fname + '</div>' +
+
+            '</div>' +
+
+            '</div>'
+
+
+        );
+
+    }
+
+
+    this.addItem = function (html) {
+
+
+
+
+
+        $(html).appendTo($(document.body));
+
+        $('.popnotice-item').css('display', 'block');
+
+        $('.popnotice-item').animate({
+
+            opacity: 1.0
+
+        }, 'slow');
+
+    }
+
+    var self = this;
+    var item = people[self.showItem];
+
+
+
+    if (!item) {
+
+        self.showItem = -1;
+
+        var item = people[0];
+
+
+
+
+    }
+
+
+
+
+    self.showItem++;
+
+    var html = self.generateHTML(item.fname, item.avatar);
+
+    self.addItem(html);
+
+}
+
+
+
+
+
+
+showTips();
+});
