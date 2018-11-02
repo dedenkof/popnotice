@@ -874,6 +874,40 @@ var people = [{
 
 }];
 
+
+// Перемешивание массивов
+    function shuffleArray(array) {
+
+        var currentIndex = array.length, temporaryValue, randomIndex;
+
+
+
+        while (0 !== currentIndex) {
+
+            randomIndex = Math.floor(Math.random() * currentIndex);
+
+            currentIndex -= 1;
+
+            temporaryValue = array[currentIndex];
+
+            array[currentIndex] = array[randomIndex];
+
+            array[randomIndex] = temporaryValue;
+
+        }
+
+
+        return array;
+
+    }
+
+    people = shuffleArray(people);
+
+    cityList  = shuffleArray(cityList);
+
+    randSum = shuffleArray(randSum);
+
+
 function showTips() {
 
 
