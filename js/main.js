@@ -959,6 +959,26 @@ function showTips() {
 
     }
 
+    this.bindEvent = function () {
+
+        setTimeout(function () {
+
+            $('.popnotice-item').animate({
+
+                opacity: 0.1
+
+            }, 'slow', function () {
+
+                $('.popnotice-item').css('display', 'none');
+
+                $('.popnotice-item').remove();
+
+            });
+
+        }, 3000);
+
+    }
+
     var self = this;
     var item = people[self.showItem];
 
@@ -983,7 +1003,7 @@ function showTips() {
     var html = self.generateHTML(item.fname, item.avatar);
 
     self.addItem(html);
-
+    self.bindEvent();
 }
 
 
