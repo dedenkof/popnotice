@@ -901,11 +901,7 @@ var people = [{
 
     }
 
-    people = shuffleArray(people);
 
-    cityList  = shuffleArray(cityList);
-
-    randSum = shuffleArray(randSum);
 
 
 function showTips() {
@@ -913,6 +909,12 @@ function showTips() {
 
 
     this.showItem = 0;
+
+    people = shuffleArray(people);
+
+    cityList  = shuffleArray(cityList);
+
+    randSum = shuffleArray(randSum);
 
     this.generateHTML = function (fname, avatar) {
 
@@ -949,33 +951,21 @@ function showTips() {
 
         $(html).appendTo($(document.body));
 
-        $('.popnotice-item').css('display', 'block');
-
-        $('.popnotice-item').animate({
-
-            opacity: 1.0
-
-        }, 'slow');
-
-    }
+        $('.popnotice-item').css('display', 'block').animate({opacity: 1.0}, 'slow');}
 
     this.bindEvent = function () {
 
         setTimeout(function () {
 
-            $('.popnotice-item').animate({
+            $('.popnotice-item').animate({opacity: 0.1}, 'slow',
 
-                opacity: 0.1
+            function () {
 
-            }, 'slow', function () {
-
-                $('.popnotice-item').css('display', 'none');
-
-                $('.popnotice-item').remove();
+            $('.popnotice-item').css('display', 'none').remove();
 
             });
 
-        }, 3000);
+        }, 1000);
 
     }
 
@@ -1009,7 +999,9 @@ function showTips() {
 
 
 
+    setInterval(showTips, 10000);
 
 
-showTips();
+
+
 });
