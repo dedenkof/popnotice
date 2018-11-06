@@ -603,13 +603,9 @@ $(function () {
 
                 var classSex = 'woman-item';
 
-                var avatar = imgPathWoman;
-
             }else{
 
                 var classSex = 'man-item';
-
-                var avatar = imgPathMan;
 
             }
 
@@ -619,7 +615,7 @@ $(function () {
 
                 '<div class="popnotice-item">' + classSex+ '">' +
 
-                '<img src="' + avatar + '" alt="" class="popnotice-img">' +
+                '<img src="'+ (avatar) + '" alt="" class="popnotice-img">' +
 
                 '<div class="popnotice-description">' +
 
@@ -655,13 +651,13 @@ $(function () {
 
                     });
 
-            }, 1000);
+            }, 10000);
 
         }
 
         var self = this;
-        var item = people[self.showItem];
 
+        var item = people[self.showItem];
 
         if (!item) {
 
@@ -672,17 +668,39 @@ $(function () {
 
         }
 
+        var imgWoman = imgPathWoman[self.showItem];
+
+        if (!imgWoman) {
+
+            self.showItem = -1;
+
+            var imgWoman = imgPathWoman[0];
+
+        }
+
+        var imgMan = imgPathMan[self.showItem];
+
+        if (!imgMan) {
+
+            self.showItem = -1;
+
+            var imgMan = imgPathMan[0];
+
+        }
+
+        var avatar = item.sex ? imgMan : imgWoman;
 
         self.showItem++;
 
-        var html = self.generateHTML(item.fname, item.avatar, item.sex);
+
+        var html = self.generateHTML(item.fname, avatar, item.sex);
 
         self.addItem(html);
         self.bindEvent();
     }
 
 
-    setInterval(showTips, 10000);
+    setInterval(showTips, 7000);
 
 
 });
