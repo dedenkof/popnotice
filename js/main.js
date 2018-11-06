@@ -596,14 +596,14 @@ $(function () {
 
         imgPathMan = shuffleArray(imgPathMan);
 
-
+        // output HTML
         this.generateHTML = function (fname, avatar, sex) {
 
-            if(sex == 0){
+            if (sex == 0) {
 
                 var classSex = 'woman-item';
 
-            }else{
+            } else {
 
                 var classSex = 'man-item';
 
@@ -613,9 +613,9 @@ $(function () {
 
 
 
-                '<div class="popnotice-item">' + classSex+ '">' +
+                '<div class="popnotice-item">' + classSex + '">' +
 
-                '<img src="'+ (avatar) + '" alt="" class="popnotice-img">' +
+                '<img src="' + (avatar) + '" alt="" class="popnotice-img">' +
 
                 '<div class="popnotice-description">' +
 
@@ -630,7 +630,7 @@ $(function () {
 
         }
 
-
+        // output popnotice item to DOM wit animation
         this.addItem = function (html) {
 
 
@@ -639,6 +639,7 @@ $(function () {
             $('.popnotice-item').css('display', 'block').animate({opacity: 1.0}, 'slow');
         }
 
+        // disappear popnotice item to DOM wit animation
         this.bindEvent = function () {
 
             setTimeout(function () {
@@ -655,8 +656,10 @@ $(function () {
 
         }
 
+
         var self = this;
 
+        // Loop popnotice item and valiadation shuffle variable from array
         var item = people[self.showItem];
 
         if (!item) {
@@ -690,16 +693,19 @@ $(function () {
 
         var avatar = item.sex ? imgMan : imgWoman;
 
+        // Count popnotice item loop
         self.showItem++;
 
-
+        // Output generation HTML code with passing an argument popnotice item to a function
         var html = self.generateHTML(item.fname, avatar, item.sex);
 
+        // Call appear and disappear function
         self.addItem(html);
+
         self.bindEvent();
     }
 
-
+    // Interval between show popnotice item
     setInterval(showTips, 7000);
 
 
