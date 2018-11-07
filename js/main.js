@@ -4,13 +4,14 @@ $(function () {
     var randSum = [1000, 1500, 2000, 2500, 3000, 3250, 3500, 3750, 4000, 4350, 4500, 4800, 5000, 5200, 5500, 5700, 6000, 6300, 6500, 6900, 7000, 7500, 7200, 8000, 8500, 8700, 9000, 9300, 9500, 10000];
 
 // Create array city
-    var cityList = ['Александрия', 'Белая Церковь', 'Винница', 'Вишневое', 'Днепропетровск', 'Дрогобыч', 'Житомир', 'Запорожье', 'Знаменка', 'Золотоноша', 'Киев', 'Кировоград', 'Конотоп', 'Кривой Рог', 'Львов', 'Ровно', 'Славутич', 'Смела', 'Сумы', 'Харьков', 'Червоноград', 'Черкасы', 'Чернигов', 'Шостка'];
+    var cityList = ['Александрия', 'Белая Церковь', 'Винница', 'Вишневое', 'Днепро', 'Дрогобыч', 'Житомир', 'Запорожье', 'Знаменка', 'Золотоноша', 'Киев', 'Кропивницкий', 'Конотоп', 'Кривой Рог', 'Львов', 'Ровно', 'Славутич', 'Смела', 'Сумы', 'Харьков', 'Червоноград', 'Черкасы', 'Чернигов', 'Шостка'];
 
     var imgPathMan = ['img/man1.png', 'img/man2.png', 'img/man3.png', 'img/man4.png', 'img/man5.png', 'img/man6.png', 'img/man7.png', 'img/man8.png'];
 
     var imgPathWoman = ['img/woman1.png', 'img/woman2.png', 'img/woman3.png', 'img/woman4.png', 'img/woman5.png', 'img/woman6.png', 'img/woman7.png', 'img/woman8.png'];
 
-// Create list object in array people
+
+    // Create list object in array people
 
     var people = [{
 
@@ -597,7 +598,7 @@ $(function () {
         imgPathMan = shuffleArray(imgPathMan);
 
         // output HTML
-        this.generateHTML = function (fname, avatar, sex) {
+        this.generateHTML = function (fname, avatar, sex, city) {
 
             if (sex == 0) {
 
@@ -613,13 +614,13 @@ $(function () {
 
 
 
-                '<div class="popnotice-item">' + classSex + '">' +
+                '<div class="popnotice-item ' + classSex + '">' +
 
-                '<img src="' + (avatar) + '" alt="" class="popnotice-img">' +
+                '<img src="' + (avatar) + '" class="popnotice-img">' +
 
                 '<div class="popnotice-description">' +
 
-                '<div class="popnotice-text">' + fname + '</div>' +
+                '<div class="popnotice-text"><h3>' + fname +'</h3>'+ 'г. ' + city + ', сделал' + (sex ? '' : 'а') + ' заказ'  +'</div>' +
 
                 '</div>' +
 
@@ -652,7 +653,7 @@ $(function () {
 
                     });
 
-            }, 10000);
+            }, 8000);
 
         }
 
@@ -691,13 +692,23 @@ $(function () {
 
         }
 
+        var city = cityList[self.showItem];
+
+        if (!city) {
+
+            self.showItem = -1;
+
+            var city = cityList[0];
+
+        }
+
         var avatar = item.sex ? imgMan : imgWoman;
 
         // Count popnotice item loop
         self.showItem++;
 
         // Output generation HTML code with passing an argument popnotice item to a function
-        var html = self.generateHTML(item.fname, avatar, item.sex);
+        var html = self.generateHTML(item.fname, avatar, item.sex, city);
 
         // Call appear and disappear function
         self.addItem(html);
@@ -706,7 +717,7 @@ $(function () {
     }
 
     // Interval between show popnotice item
-    setInterval(showTips, 7000);
-
+    // showTips();
+    setInterval(showTips, 35000);
 
 });

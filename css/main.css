@@ -95,23 +95,23 @@ h2 {
     position: fixed;
     right: 20px;
     top: 70px;
-    width: 300px;
+    max-width: 350px;
+    width: auto;
     vertical-align: middle;
     height: 120px;
     color: #fff;
-    padding: 12px;
+    padding: 6px;
     font-size: 12px;
     line-height: 90px;
     display: none;
     font: 16px Arial, sans-serif;
     z-index: 9999;
-    border: 2px solid #ccc;
     border-radius: 30px;
 }
 .popnotice-img{
     float: left;
     max-width: 80px;
-    margin-right: 10px;
+    margin-right: 5px;
     margin-top: 20px;
 }
 .popnotice-description{
@@ -119,7 +119,13 @@ h2 {
     line-height: normal;
     display: inline-block;
     vertical-align: middle;
+    padding: 20px 15px 0 0;
 }
+
+.popnotice-description h3{
+    font-weight: bold;
+}
+
 .popnotice-woman{
     background-color: #333333;
 }
@@ -128,9 +134,18 @@ h2 {
 }
 .popnotice-text{
     float: left;
-    height: 90px;
-    line-height: 90px;
+    line-height: 22px;
     display: inline-block;
     vertical-align: middle;
     color: #000000;
+}
+
+.woman-item{
+    background: #ffde26;
+    border: 2px solid #ffb011;
+}
+
+.man-item{
+    background: #39c7ff;
+    border: 2px solid #509aff;
 }
