@@ -1,7 +1,7 @@
 $(function () {
 
 // Create array from 1000 to 10000 value
-    var randSum = [1000, 1500, 2000, 2500, 3000, 3250, 3500, 3750, 4000, 4350, 4500, 4800, 5000, 5200, 5500, 5700, 6000, 6300, 6500, 6900, 7000, 7500, 7200, 8000, 8500, 8700, 9000, 9300, 9500, 10000];
+    var randOrderSum = [1000, 1500, 2000, 2500, 3000, 3250, 3500, 3750, 4000, 4350, 4500, 4800, 5000, 5200, 5500, 5700, 6000, 6300, 6500, 6900, 7000, 7500, 7200, 8000, 8500, 8700, 9000, 9300, 9500, 10000];
 
 // Create array city
     var cityList = ['Александрия', 'Белая Церковь', 'Винница', 'Вишневое', 'Днепро', 'Дрогобыч', 'Житомир', 'Запорожье', 'Знаменка', 'Золотоноша', 'Киев', 'Кропивницкий', 'Конотоп', 'Кривой Рог', 'Львов', 'Ровно', 'Славутич', 'Смела', 'Сумы', 'Харьков', 'Червоноград', 'Черкасы', 'Чернигов', 'Шостка'];
@@ -556,7 +556,7 @@ $(function () {
     }];
 
 
-// Перемешивание массивов
+// shuffle Arrays
     function shuffleArray(array) {
 
         var currentIndex = array.length, temporaryValue, randomIndex;
@@ -591,14 +591,14 @@ $(function () {
 
         cityList = shuffleArray(cityList);
 
-        randSum = shuffleArray(randSum);
+        randOrderSum = shuffleArray(randOrderSum);
 
         imgPathWoman = shuffleArray(imgPathWoman);
 
         imgPathMan = shuffleArray(imgPathMan);
 
         // output HTML
-        this.generateHTML = function (fname, avatar, sex, city) {
+        this.generateHTML = function (fname, avatar, sex, city, randOrderSum) {
 
             if (sex == 0) {
 
@@ -620,7 +620,7 @@ $(function () {
 
                 '<div class="popnotice-description">' +
 
-                '<div class="popnotice-text"><h3>' + fname +'</h3>'+ 'г. ' + city + ', сделал' + (sex ? '' : 'а') + ' заказ'  +'</div>' +
+                '<div class="popnotice-text"><h3>' + fname +'</h3>'+ 'г. ' + city + ', сделал' + (sex ? '' : 'а') + ' заказ на сумму ' + randOrderSum + ' грн.</div>' +
 
                 '</div>' +
 
@@ -702,13 +702,23 @@ $(function () {
 
         }
 
+        var sum = randOrderSum[self.showItem];
+
+        if (!sum) {
+
+            self.showItem = -1;
+
+            var sum = randOrderSum[0];
+
+        }
+
         var avatar = item.sex ? imgMan : imgWoman;
 
         // Count popnotice item loop
         self.showItem++;
 
         // Output generation HTML code with passing an argument popnotice item to a function
-        var html = self.generateHTML(item.fname, avatar, item.sex, city);
+        var html = self.generateHTML(item.fname, avatar, item.sex, city, sum);
 
         // Call appear and disappear function
         self.addItem(html);
@@ -718,6 +728,6 @@ $(function () {
 
     // Interval between show popnotice item
     // showTips();
-    setInterval(showTips, 35000);
+    setInterval(showTips, 25000);
 
 });
