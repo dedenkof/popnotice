@@ -607,7 +607,7 @@ $(function () {
 
 
         // output HTML
-        this.generateHTML = function (fname, avatar, sex, city, randOrderSum) {
+        this.generateHTML = function (fname, avatar, sex, city, phrasex, randOrderSum) {
 
             if (sex == 0) {
 
@@ -629,7 +629,10 @@ $(function () {
 
                 '<div class="popnotice-description">' +
 
-                '<div class="popnotice-text"><h3>' + fname +'</h3>'+ 'г. ' + city + ', сделал' + (sex ? '' : 'а') + ' заказ на сумму ' + randOrderSum + ' грн.</div>' +
+                //'<div class="popnotice-text"><h3>' + fname +'</h3>'+ 'г. ' + city + ', сделал' + (sex ? '' : 'а') + ' заказ на сумму ' + randOrderSum + ' грн.</div>' +
+
+                '<div class="popnotice-text"><h3>' + fname +'</h3>'+ 'г. ' + city + ', '  + phrasex + ' заказ на сумму ' + randOrderSum + ' грн.</div>' +
+
 
                 '</div>' +
 
@@ -724,7 +727,7 @@ $(function () {
 
         }
 
-// Verb and Noun validate and random output depending on the selected verb
+// Verb and Noun validate and output random phrase depending on the selected verb
 
         var aVerb = actionVerb[self.showItem];
 
@@ -814,14 +817,16 @@ $(function () {
             }
         }
 
-        console.log(aVerb + ' '+ aNoun);
+
+        phrasex  = item.sex ? aVerb : aVerb + 'а';
+
 
 
         // Count popnotice item loop
         self.showItem++;
 
         // Output generation HTML code with passing an argument popnotice item to a function
-        var html = self.generateHTML(item.fname, avatar, item.sex, city, sum);
+        var html = self.generateHTML(item.fname, avatar, item.sex, city, phrasex, sum);
 
         // Call appear and disappear function
         self.addItem(html);
