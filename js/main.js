@@ -724,11 +724,7 @@ $(function () {
 
         }
 
-
-        //
-        var actionVerb = ['сделал','оставил', 'оформил', 'совершил'];
-
-        var actionNoun = ['заказ','сообщение', 'заявку', 'заявку на обратный звонок', 'регистрацию на сайте'];
+// Verb and Noun validate and random output depending on the selected verb
 
         var aVerb = actionVerb[self.showItem];
 
@@ -741,11 +737,12 @@ $(function () {
         }
 
 
-
         if(aVerb == 'сделал'){
-            //var actionNoun = ['заказ','сообщение', 'заявку', 'заявку на обратный звонок', 'регистрацию на сайте'];
+
             var actionNoun = ['заказ', 'заявку', 'заявку на обратный звонок', 'регистрацию на сайте'];
-                actionNoun = shuffleArray(actionNoun);
+
+            actionNoun = shuffleArray(actionNoun);
+
             var aNoun = actionNoun[self.showItem];
 
             if (!actionNoun) {
@@ -755,9 +752,57 @@ $(function () {
                 var aNoun = actionNoun[0];
 
             }
-        }else if(aVerb == 'оставил'){
-            var actionNoun = ['заявку', 'заявку на обратный звонок'];
+
+        }else if(aVerb == 'оформил'){
+
+            var actionNoun = ['заказ', 'заявку', 'заявку на обратный звонок', 'регистрацию на сайте'];
+
             actionNoun = shuffleArray(actionNoun);
+
+            var aNoun = actionNoun[self.showItem];
+
+            if (!actionNoun) {
+
+                self.showItem = -1;
+
+                var aNoun = actionNoun[0];
+            }
+
+        }else if(aVerb == 'совершил'){
+
+            var actionNoun = ['заказ', 'заявку', 'регистрацию на сайте'];
+
+            actionNoun = shuffleArray(actionNoun);
+
+            var aNoun = actionNoun[self.showItem];
+
+            if (!actionNoun) {
+
+                self.showItem = -1;
+
+                var aNoun = actionNoun[0];
+            }
+
+        }else if(aVerb == 'оставил'){
+
+            var actionNoun = ['заявку', 'заявку на обратный звонок'];
+
+            actionNoun = shuffleArray(actionNoun);
+
+            var aNoun = actionNoun[self.showItem];
+
+            if (!actionNoun) {
+
+                self.showItem = -1;
+
+                var aNoun = actionNoun[0];
+            }
+
+        }else{
+            var actionNoun = ['заказ', 'заявку', 'заявку на обратный звонок', 'регистрацию на сайте'];
+
+            actionNoun = shuffleArray(actionNoun);
+
             var aNoun = actionNoun[self.showItem];
 
             if (!actionNoun) {
@@ -766,30 +811,11 @@ $(function () {
 
                 var aNoun = actionNoun[0];
 
-        }else if(aVerb == 'оформил'){
-                var actionNoun = ['заказ', 'заявку', 'заявку на обратный звонок', 'регистрацию на сайте'];
-                actionNoun = shuffleArray(actionNoun);
-                var aNoun = actionNoun[self.showItem];
+            }
+        }
 
-                if (!actionNoun) {
+        console.log(aVerb + ' '+ aNoun);
 
-                    self.showItem = -1;
-
-                    var aNoun = actionNoun[0];
-                }
-            }else if(aVerb == 'совершил'){
-                var actionNoun = ['заказ', 'заявку', 'регистрацию на сайте'];
-                actionNoun = shuffleArray(actionNoun);
-                var aNoun = actionNoun[self.showItem];
-
-                if (!actionNoun) {
-
-                    self.showItem = -1;
-
-                    var aNoun = actionNoun[0];
-                }
-
-        //
 
         // Count popnotice item loop
         self.showItem++;
@@ -805,6 +831,6 @@ $(function () {
 
     // Interval between show popnotice item
     // showTips();
-    setInterval(showTips, 10000);
+    setInterval(showTips, 5000);
 
 });
