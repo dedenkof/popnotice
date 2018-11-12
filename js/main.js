@@ -631,7 +631,7 @@ $(function () {
 
                 //'<div class="popnotice-text"><h3>' + fname +'</h3>'+ 'г. ' + city + ', сделал' + (sex ? '' : 'а') + ' заказ на сумму ' + randOrderSum + ' грн.</div>' +
 
-                '<div class="popnotice-text"><h3>' + fname +'</h3>'+ 'г. ' + city + ', '  + phrasex + ' заказ на сумму ' + randOrderSum + ' грн.</div>' +
+                '<div class="popnotice-text"><h3>' + fname +'</h3>'+ 'г. ' + city + ', '  + phrasex + '</div>' +
 
 
                 '</div>' +
@@ -742,7 +742,7 @@ $(function () {
 
         if(aVerb == 'сделал'){
 
-            var actionNoun = ['заказ', 'заявку', 'заявку на обратный звонок', 'регистрацию на сайте'];
+            var actionNoun = ['заказ', 'заявку', 'заявку на обратный звонок', 'регистрацию на сайте', 'заявку на предзаказ товара', 'предзаказ товара', 'заявку на бронь товара'];
 
             actionNoun = shuffleArray(actionNoun);
 
@@ -758,7 +758,7 @@ $(function () {
 
         }else if(aVerb == 'оформил'){
 
-            var actionNoun = ['заказ', 'заявку', 'заявку на обратный звонок', 'регистрацию на сайте'];
+            var actionNoun = ['заказ', 'заявку', 'заявку на обратный звонок', 'регистрацию на сайте', 'заявку на предзаказ товара', 'предзаказ товара', 'заявку на бронь товара'];
 
             actionNoun = shuffleArray(actionNoun);
 
@@ -773,7 +773,7 @@ $(function () {
 
         }else if(aVerb == 'совершил'){
 
-            var actionNoun = ['заказ', 'заявку', 'регистрацию на сайте'];
+            var actionNoun = ['покупку', 'заказ', 'заявку', 'регистрацию на сайте', 'заявку на предзаказ товара', 'предзаказ товара', 'заявку на бронь товара'];
 
             actionNoun = shuffleArray(actionNoun);
 
@@ -788,7 +788,7 @@ $(function () {
 
         }else if(aVerb == 'оставил'){
 
-            var actionNoun = ['заявку', 'заявку на обратный звонок'];
+            var actionNoun = ['заявку на бронь товара', 'заявку на обратный звонок', 'заявку на предзаказ товара'];
 
             actionNoun = shuffleArray(actionNoun);
 
@@ -802,7 +802,7 @@ $(function () {
             }
 
         }else{
-            var actionNoun = ['заказ', 'заявку', 'заявку на обратный звонок', 'регистрацию на сайте'];
+            var actionNoun = ['покупку', 'заказ', 'заявку на предзаказ товара', 'предзаказ товара', 'заявку на бронь товара', 'заявку на обратный звонок', 'регистрацию на сайте'];
 
             actionNoun = shuffleArray(actionNoun);
 
@@ -818,11 +818,27 @@ $(function () {
         }
 
 
-        phrasex  = item.sex ? aVerb : aVerb + 'а';
+
+        // function output verb depending on the sex people and price goods depending on the action noun
+
+        this.nounSum = function (aNoun){
+            if(aNoun == 'покупку' || aNoun == 'заказ' || aNoun == 'предзаказ товара'){
+
+                return phrasex  = item.sex ? aVerb + ' ' + aNoun + ' на сумму ' + sum + ' грн.' : aVerb + 'а ' + aNoun + ' на сумму ' + sum + ' грн.';
+
+            }else{
+
+                return phrasex  = item.sex ? aVerb + ' ' + aNoun : aVerb + 'а ' + aNoun ;
+
+            }
+        };
+
+        self.nounSum(aNoun);
 
 
 
         // Count popnotice item loop
+
         self.showItem++;
 
         // Output generation HTML code with passing an argument popnotice item to a function
