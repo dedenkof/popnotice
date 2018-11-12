@@ -10,7 +10,7 @@ $(function () {
 
     var imgPathWoman = ['img/woman1.png', 'img/woman2.png', 'img/woman3.png', 'img/woman4.png', 'img/woman5.png', 'img/woman6.png', 'img/woman7.png', 'img/woman8.png'];
 
-    var actionVerb = ['сделал','оставил', 'оформил', 'совершил'];
+    var actionVerb = ['сделал','оставил', 'оформил', 'совершил', 'забронировал'];
 
 
 
@@ -742,7 +742,7 @@ $(function () {
 
         if(aVerb == 'сделал'){
 
-            var actionNoun = ['заказ', 'заявку', 'заявку на обратный звонок', 'регистрацию на сайте', 'заявку на предзаказ товара', 'предзаказ товара', 'заявку на бронь товара'];
+            var actionNoun = ['заказ', 'заявку на обратный звонок', 'регистрацию на сайте', 'предзаказ товара'];
 
             actionNoun = shuffleArray(actionNoun);
 
@@ -758,7 +758,7 @@ $(function () {
 
         }else if(aVerb == 'оформил'){
 
-            var actionNoun = ['заказ', 'заявку', 'заявку на обратный звонок', 'регистрацию на сайте', 'заявку на предзаказ товара', 'предзаказ товара', 'заявку на бронь товара'];
+            var actionNoun = ['заказ', 'заявку на обратный звонок', 'регистрацию на сайте', 'предзаказ товара'];
 
             actionNoun = shuffleArray(actionNoun);
 
@@ -773,7 +773,7 @@ $(function () {
 
         }else if(aVerb == 'совершил'){
 
-            var actionNoun = ['покупку', 'заказ', 'заявку', 'регистрацию на сайте', 'заявку на предзаказ товара', 'предзаказ товара', 'заявку на бронь товара'];
+            var actionNoun = ['покупку', 'заказ', 'регистрацию на сайте', 'предзаказ товара'];
 
             actionNoun = shuffleArray(actionNoun);
 
@@ -786,9 +786,24 @@ $(function () {
                 var aNoun = actionNoun[0];
             }
 
+        }else if(aVerb == 'забронировал'){
+
+        var actionNoun = ['товар'];
+
+        actionNoun = shuffleArray(actionNoun);
+
+        var aNoun = actionNoun[self.showItem];
+
+        if (!actionNoun) {
+
+            self.showItem = -1;
+
+            var aNoun = actionNoun[0];
+        }
+
         }else if(aVerb == 'оставил'){
 
-            var actionNoun = ['заявку на бронь товара', 'заявку на обратный звонок', 'заявку на предзаказ товара'];
+            var actionNoun = ['заявку на обратный звонок'];
 
             actionNoun = shuffleArray(actionNoun);
 
@@ -802,7 +817,7 @@ $(function () {
             }
 
         }else{
-            var actionNoun = ['покупку', 'заказ', 'заявку на предзаказ товара', 'предзаказ товара', 'заявку на бронь товара', 'заявку на обратный звонок', 'регистрацию на сайте'];
+            var actionNoun = ['заказ', 'заявку на обратный звонок', 'регистрацию на сайте', 'предзаказ товара'];
 
             actionNoun = shuffleArray(actionNoun);
 
@@ -822,7 +837,7 @@ $(function () {
         // function output verb depending on the sex people and price goods depending on the action noun
 
         this.nounSum = function (aNoun){
-            if(aNoun == 'покупку' || aNoun == 'заказ' || aNoun == 'предзаказ товара'){
+            if(aNoun == 'покупку' || aNoun == 'заказ' || aNoun == 'предзаказ товара' || aNoun == 'товар'){
 
                 return phrasex  = item.sex ? aVerb + ' ' + aNoun + ' на сумму ' + sum + ' грн.' : aVerb + 'а ' + aNoun + ' на сумму ' + sum + ' грн.';
 
@@ -842,7 +857,7 @@ $(function () {
         self.showItem++;
 
         // Output generation HTML code with passing an argument popnotice item to a function
-        var html = self.generateHTML(item.fname, avatar, item.sex, city, phrasex, sum);
+        var html = self.generateHTML(item.fname, avatar, item.sex, city, phrasex);
 
         // Call appear and disappear function
         self.addItem(html);
