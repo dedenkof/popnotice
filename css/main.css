@@ -126,12 +126,7 @@ h2 {
     font-weight: bold;
 }
 
-.popnotice-woman{
-    background-color: #333333;
-}
-.popnotice-man{
-    background-color: #fccb34;
-}
+
 .popnotice-text{
     float: left;
     line-height: 22px;
@@ -141,11 +136,9 @@ h2 {
 }
 
 .woman-item{
-    background: #ffde26;
     border: 2px solid #ffb011;
 }
 
 .man-item{
-    background: #39c7ff;
     border: 2px solid #509aff;
 }

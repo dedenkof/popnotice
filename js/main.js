@@ -609,13 +609,26 @@ $(function () {
         // output HTML
         this.generateHTML = function (fname, avatar, sex, city, phrasex, randOrderSum) {
 
+
+            // Function rand opacity background depending on people
+
+            function randomOpacity (min, max) {
+                return (Math.random() + 0.1 * (max - min) + min).toFixed(1);
+            }
+
+
+
             if (sex == 0) {
 
                 var classSex = 'woman-item';
 
+                var bgrand = 'style="background: rgba(255,222,38,' + randomOpacity(0.4, 1) + ');"';
+
             } else {
 
                 var classSex = 'man-item';
+
+                var bgrand = 'style="background: rgba(57,199,255,' + randomOpacity(0.4, 1) + ');"';
 
             }
 
@@ -623,13 +636,12 @@ $(function () {
 
 
 
-                '<div class="popnotice-item ' + classSex + '">' +
+                '<div '  + bgrand + ' class="popnotice-item ' + classSex + '">' +
 
-                '<img src="' + (avatar) + '" class="popnotice-img">' +
+                '<img src="' + avatar + '" class="popnotice-img">' +
 
                 '<div class="popnotice-description">' +
 
-                //'<div class="popnotice-text"><h3>' + fname +'</h3>'+ 'г. ' + city + ', сделал' + (sex ? '' : 'а') + ' заказ на сумму ' + randOrderSum + ' грн.</div>' +
 
                 '<div class="popnotice-text"><h3>' + fname +'</h3>'+ 'г. ' + city + ', '  + phrasex + '</div>' +
 
@@ -641,7 +653,7 @@ $(function () {
 
             );
 
-        }
+        };
 
         // output popnotice item to DOM wit animation
         this.addItem = function (html) {
@@ -866,7 +878,7 @@ $(function () {
     }
 
     // Interval between show popnotice item
-    // showTips();
+    //showTips();
     setInterval(showTips, 5000);
 
 });
